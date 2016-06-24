@@ -32,9 +32,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var condition: UILabel!
     @IBOutlet weak var tempmin: UILabel!
     @IBOutlet weak var tempmax: UILabel!
+    @IBOutlet weak var windspd: UILabel!
+    @IBOutlet weak var wdir: UILabel!
     
     func connect(){
-        let url: String = ""
+        let url: String = "http://api.openweathermap.org/data/2.5/weather?q=Hockenheim,de&appid=8fac47973bfc7e3f73b113e9b0171517"
         let nsUrl: NSURL = NSURL(string: url)!
         let request: NSURLRequest = NSURLRequest(URL: nsUrl)
         let nsURLConnection: NSURLConnection = NSURLConnection(request: request, delegate: self, startImmediately: false)!
@@ -58,16 +60,22 @@ class ViewController: UIViewController {
             temperatur.text = (NSString(format: "%.2f", tempCelsius) as String)+" °C" as String
             let tempMinKelvin = main["temp_min"] as! Double
             let tempMinCelsius = tempMinKelvin - 273.15
-            tempmin.text = (NSString(format: "%.2f", tempCelsius) as String)+" °C" as String
+            tempmin.text = (NSString(format: "%.2f", tempMinCelsius) as String)+" °C" as String
             let tempMaxKelvin = main["temp_max"] as! Double
             let tempMaxCelsius = tempMaxKelvin - 273.15
-            tempmax.text = (NSString(format: "%.2f", tempCelsius) as String)+" °C" as String
+            tempmax.text = (NSString(format: "%.2f", tempMaxCelsius) as String)+" °C" as String
             let druck = main["pressure"] as! Double
             ort.text = (NSString(format: "%.0f", druck) as String)+" hPa" as String
             let weather: NSArray = (jsonData["weather"] as? NSArray)!
             let weatherData: NSDictionary = weather[0] as! NSDictionary
             let description = String(weatherData["description"] as! NSString)
             self.condition.text = description
+            let wind: NSDictionary = jsonData["wind"] as! NSDictionary
+            let wspeed = wind["speed"] as! Double
+            windspd.text = (NSString(format: "%.1f", wspeed) as String)+" m/s" as String
+            let windir = wind["deg"] as! Double
+            wdir.text = (NSString(format: "%.1f", windir) as String)+"°" as String
+            
             //let icon = String(weatherData["icon"] as! NSString)
             //let image1 = UIImage(named: icon)
             //self.weatherImage.image = image1
