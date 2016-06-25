@@ -26,6 +26,8 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     var data = NSMutableData()
+    var windir = Double()
+    var tempCelsius = Double()
     
     @IBOutlet weak var temperatur: UILabel!
     @IBOutlet weak var ort: UILabel!
@@ -76,7 +78,7 @@ class ViewController: UIViewController {
             let wind: NSDictionary = jsonData["wind"] as! NSDictionary
             let wspeed = wind["speed"] as! Double
             windspd.text = (NSString(format: "%.1f", wspeed) as String)+" m/s" as String
-            let windir = wind["deg"] as! Double
+            var windir = wind["deg"] as! Double
             wdir.text = (NSString(format: "%.1f", windir) as String)+"°" as String
             let name: NSString = jsonData["name"] as! NSString
             ort.text = name as String
@@ -92,7 +94,25 @@ class ViewController: UIViewController {
             //self.weatherImage.image = image1
             
         } catch {
-            print("Fehler aufgetreten!")
+            //print("Fehler aufgetreten!")
             }
+    }
+    
+    @IBAction func unwindToVC(segue: UIStoryboardSegue) {
+        
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "mysegue" {
+            let svc = segue.destinationViewController as! SecondviewController
+            svc.windr = tempCelsius as! String
+            //(segue.destinationViewController as! SecondviewController) windrichtung.text = windr
+        }
+        
+        
+        
+        //let DestViewController : SecondviewController = segue.destinationViewController as! SecondviewController
+        
+    
     }
 }
