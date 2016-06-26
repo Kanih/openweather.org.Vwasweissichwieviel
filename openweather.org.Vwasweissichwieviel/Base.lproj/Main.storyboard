@@ -101,7 +101,7 @@
                                     <color key="titleColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="tn9-Xb-FLy" kind="show" id="efk-8q-idz"/>
+                                    <segue destination="tn9-Xb-FLy" kind="show" identifier="mysegue" id="efk-8q-idz"/>
                                 </connections>
                             </button>
                         </subviews>

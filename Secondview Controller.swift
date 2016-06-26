@@ -12,27 +12,29 @@ import UIKit
 class SecondviewController: UIViewController {
     
     @IBOutlet weak var windrichtung: UILabel!
-    var windr = String()
+    var windr = NSString()
     
-    override func viewWillAppear(animated: Bool) {
+    //override func viewWillAppear(animated: Bool) {
         //super.viewWillAppear(animated)
         //connect()
 
-    }
+    //}
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        //super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        
+        windrichtung.text = windr as! String
 
-        windrichtung.text = (NSString(format: "%.1f", windr) as String)+"%" as String
+        //windrichtung.text = (NSString(format: "%.1f", windr) as String)+"%" as String
 
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    //override func didReceiveMemoryWarning() {
+      //  super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
+    //}
     
     
     

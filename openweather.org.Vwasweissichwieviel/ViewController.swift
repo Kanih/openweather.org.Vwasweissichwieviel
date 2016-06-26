@@ -28,6 +28,7 @@ class ViewController: UIViewController {
     var data = NSMutableData()
     var windir = Double()
     var tempCelsius = Double()
+    var name1 = NSString()
     
     @IBOutlet weak var temperatur: UILabel!
     @IBOutlet weak var ort: UILabel!
@@ -81,6 +82,7 @@ class ViewController: UIViewController {
             var windir = wind["deg"] as! Double
             wdir.text = (NSString(format: "%.1f", windir) as String)+"°" as String
             let name: NSString = jsonData["name"] as! NSString
+            name1 = name
             ort.text = name as String
             let humid = main["humidity"] as! Double
             humidity.text = (NSString(format: "%.0f", humid) as String)+"%" as String
@@ -103,16 +105,22 @@ class ViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "mysegue" {
-            let svc = segue.destinationViewController as! SecondviewController
-            svc.windr = tempCelsius as! String
+        //if segue.identifier == "mysegue" {
+            //let svc = segue.destinationViewController as! SecondviewController
+            //svc.windr = windir
+        
             //(segue.destinationViewController as! SecondviewController) windrichtung.text = windr
+        var DestViewController : SecondviewController = segue.destinationViewController as! SecondviewController
+        
+        DestViewController.windr = name1 as! NSString
+        
+        
         }
         
         
         
-        //let DestViewController : SecondviewController = segue.destinationViewController as! SecondviewController
+        
         
     
-    }
+    
 }
